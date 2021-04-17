@@ -28,8 +28,8 @@ RUN apk --update upgrade && \
     cmake --install . && \
 # Fix some installation issues, see https://gitlab.com/wg1/jpeg-xl/-/issues/200
     ln -s /usr/lib64/pkgconfig/* /usr/lib/pkgconfig/ && \
-    rm -rf /usr/include/contrib/image /usr/include/contrib/math /usr/include/hwy
-    ln -s /usr/lib64/libjxl* /usr/lib/
+    rm -rf /usr/include/contrib/image /usr/include/contrib/math /usr/include/hwy && \
+    ln -s /usr/lib64/libjxl* /usr/lib/ && \
 # Cleanup
     cd / && rm -rf $BUILD_DIR && \
     rm /usr/bin/benchmark_xl && \
