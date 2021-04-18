@@ -5,6 +5,7 @@ FROM alpine:3.13
 LABEL maintainer="cmahnke@gmail.com"
 LABEL "com.github.actions.name"="GitHub Actions JPEG XL conversion"
 LABEL "com.github.actions.description"="This is a simple GitHub Action to convert imageges from and to JPEG-XL"
+LABEL org.opencontainers.image.source https://github.com/cmahnke/jpeg-xl-action
 
 ARG GIT_TAG="v0.3.7"
 
