@@ -1,7 +1,6 @@
 Experimental Docker image providing JPEX-XL tools
 =================================================
 
-
 # Building
 
 ```
