@@ -7,7 +7,7 @@ on:
     - cron: '0 23 * * 1'
 
 jobs:
-  push_to_registry:
+  main_branch:
     name: Push Docker image to GitHub Packages
     runs-on: ubuntu-latest
     steps:
@@ -32,8 +32,8 @@ jobs:
           tags: |
             ghcr.io/cmahnke/jpeg-xl-action:latest
 
-  v0.3.7:
-    name: Push Docker image to GitHub Packages
+  latest-release:
+    name: Push Docker image Version 0.3.7 to GitHub Packages
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
