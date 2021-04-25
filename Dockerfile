@@ -7,9 +7,7 @@ LABEL "com.github.actions.name"="GitHub Actions JPEG XL conversion"
 LABEL "com.github.actions.description"="This is a simple GitHub Action to convert images from and to JPEG-XL"
 LABEL org.opencontainers.image.source https://github.com/cmahnke/jpeg-xl-action
 
-ARG GIT_TAG="v0.3.7"
-
-# clang lld openexr-dev
+ARG GIT_TAG=""
 
 ENV BUILD_DEPS="cmake git gcc g++ make libc-dev libgcc binutils pkgconfig giflib-dev libavif-dev libjpeg-turbo-dev libpng-dev libwebp-dev brotli-dev" \
     RUN_DEPS="bash busybox libpng libwebp giflib libavif libjpeg-turbo brotli-libs libstdc++" \
@@ -22,7 +20,9 @@ RUN apk --update upgrade && \
     cd $BUILD_DIR && \
     git clone --recursive $GIT_URL && \
     cd jpeg-xl && \
-    git checkout $GIT_TAG && \
+    if [ -n "GIT_TAG" ] ; then \
+        git checkout $GIT_TAG ; \
+    fi && \
     mkdir build && cd build && \
     cmake -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DCMAKE_INSTALL_PREFIX=/usr .. && \
     cmake --build . -- -j$(nproc) && \
