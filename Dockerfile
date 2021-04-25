@@ -9,8 +9,8 @@ LABEL org.opencontainers.image.source https://github.com/cmahnke/jpeg-xl-action
 
 ARG GIT_TAG=""
 
-ENV BUILD_DEPS="cmake git gcc g++ make libc-dev libgcc binutils pkgconfig giflib-dev libavif-dev libjpeg-turbo-dev libpng-dev libwebp-dev brotli-dev" \
-    RUN_DEPS="bash busybox libpng libwebp giflib libavif libjpeg-turbo brotli-libs libstdc++" \
+ENV BUILD_DEPS="cmake git gcc g++ make libc-dev libgcc binutils pkgconfig giflib-dev libavif-dev libjpeg-turbo-dev libpng-dev libwebp-dev brotli-dev openexr-dev" \
+    RUN_DEPS="bash busybox libpng libwebp giflib libavif libjpeg-turbo brotli-libs libstdc++ openexr" \
     BUILD_DIR=/tmp/build \
     GIT_URL="https://gitlab.com/wg1/jpeg-xl.git"
 
