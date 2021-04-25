@@ -10,7 +10,7 @@ LABEL org.opencontainers.image.source https://github.com/cmahnke/jpeg-xl-action
 ARG GIT_TAG=""
 
 ENV BUILD_DEPS="cmake git gcc g++ make libc-dev libgcc binutils pkgconfig giflib-dev libavif-dev libjpeg-turbo-dev libpng-dev libwebp-dev brotli-dev openexr-dev" \
-    RUN_DEPS="bash busybox libpng libwebp giflib libavif libjpeg-turbo brotli-libs libstdc++ openexr" \
+    RUN_DEPS="busybox libpng libwebp giflib libavif libjpeg-turbo brotli-libs libstdc++ openexr" \
     BUILD_DIR=/tmp/build \
     GIT_URL="https://gitlab.com/wg1/jpeg-xl.git"
 
@@ -32,6 +32,6 @@ RUN apk --update upgrade && \
     rm -rf /usr/include/contrib/image /usr/include/contrib/math /usr/include/hwy && \
     ln -s /usr/lib64/libjxl* /usr/lib/ && \
 # Cleanup
-    cd / && rm -rf $BUILD_DIR && \
-    rm /usr/bin/benchmark_xl && \
-    apk del $BUILD_DEPS libjpeg
+    cd / && \
+    apk del $BUILD_DEPS libjpeg \
+    rm -rf $BUILD_DIR /var/cache/apk/* /root/.cache /usr/bin/benchmark_xl
