@@ -33,5 +33,5 @@ RUN apk --update upgrade && \
     ln -s /usr/lib64/libjxl* /usr/lib/ && \
 # Cleanup
     cd / && \
-    apk del $BUILD_DEPS libjpeg \
+    apk del $BUILD_DEPS libjpeg && \
     rm -rf $BUILD_DIR /var/cache/apk/* /root/.cache /usr/bin/benchmark_xl
