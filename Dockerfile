@@ -19,7 +19,7 @@ RUN apk --update upgrade && \
     mkdir -p $BUILD_DIR && \
     cd $BUILD_DIR && \
     git clone --recursive $GIT_URL && \
-    cd jpeg-xl && \
+    cd libjxl && \
     if [ -n "GIT_TAG" ] ; then \
         git checkout $GIT_TAG ; \
     fi && \
