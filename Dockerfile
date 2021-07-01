@@ -12,7 +12,7 @@ ARG GIT_TAG=""
 ENV BUILD_DEPS="cmake git gcc g++ make libc-dev libgcc binutils pkgconfig giflib-dev libavif-dev libjpeg-turbo-dev libpng-dev libwebp-dev brotli-dev openexr-dev" \
     RUN_DEPS="busybox libpng libwebp giflib libavif libjpeg-turbo brotli-libs libstdc++ openexr" \
     BUILD_DIR=/tmp/build \
-    GIT_URL="https://gitlab.com/wg1/jpeg-xl.git"
+    GIT_URL="https://github.com/libjxl/libjxl.git"
 
 RUN apk --update upgrade && \
     apk add --no-cache $RUN_DEPS $BUILD_DEPS && \
