@@ -35,6 +35,7 @@ jobs:
   latest-release:
     name: Push Docker image Version 0.3.7 to GitHub Packages
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2.3.4
