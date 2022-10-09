@@ -25,6 +25,8 @@ jobs:
           logout: false
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2.0.0
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v3.1.1
         with:
