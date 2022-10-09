@@ -26,8 +26,7 @@ RUN apk --update upgrade && \
     fi && \
     mkdir build && cd build && \
     export CC=clang CXX=clang++ && \
-    #-DJPEGXL_ENABLE_DOXYGEN:BOOL=OFF
-    cmake -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DCMAKE_INSTALL_PREFIX=/usr .. && \
+    cmake -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_BUILD_TYPE=Release -DJPEGXL_ENABLE_DOXYGEN:BOOL=OFF -DJPEGXL_ENABLE_BENCHMARK:BOOL=OFF -DJPEGXL_ENABLE_EXAMPLES:BOOL=OFF -DBUILD_TESTING=OFF -DCMAKE_INSTALL_PREFIX=/usr .. && \
     cmake --build . -- -j$(nproc) && \
     cmake --install . && \
 ## Fix some installation issues, see https://gitlab.com/wg1/jpeg-xl/-/issues/200
