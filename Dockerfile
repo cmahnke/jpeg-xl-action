@@ -1,13 +1,13 @@
 # syntax=docker/dockerfile:experimental
 
-FROM alpine:3.15.0
+FROM alpine:3.16
 
 LABEL maintainer="cmahnke@gmail.com"
 LABEL "com.github.actions.name"="GitHub Actions JPEG XL conversion"
 LABEL "com.github.actions.description"="This is a simple GitHub Action to convert images from and to JPEG-XL"
 LABEL org.opencontainers.image.source https://github.com/cmahnke/jpeg-xl-action
 
-ARG GIT_TAG="v0.7.0"
+ARG GIT_TAG=""
 
 ENV BUILD_DEPS="cmake git clang-dev gcc g++ make libc-dev libgcc binutils pkgconfig giflib-dev libavif-dev libjpeg-turbo-dev libpng-dev \
                 libwebp-dev brotli-dev openexr-dev linux-headers" \
