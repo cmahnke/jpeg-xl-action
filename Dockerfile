@@ -19,7 +19,7 @@ RUN apk --update upgrade && \
     apk add --no-cache $RUN_DEPS $BUILD_DEPS && \
     mkdir -p $BUILD_DIR && \
     cd $BUILD_DIR && \
-    git clone --recursive $GIT_URL --shallow-submodules && \
+    git clone --depth 1 --recursive $GIT_URL --shallow-submodules && \
     cd libjxl && \
     if [ -n "GIT_TAG" ] ; then \
         git checkout $GIT_TAG ; \
