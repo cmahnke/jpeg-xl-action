@@ -21,7 +21,7 @@ RUN apk --update upgrade && \
     mkdir -p $BUILD_DIR && \
     cd $BUILD_DIR && \
     if [ -z "$GIT_TAG" ] ; then \
-        GIT_TAG=DEFAULT_GIT_TAG ; \
+        GIT_TAG=$DEFAULT_GIT_TAG ; \
     fi && \
     git clone --depth 1 --recursive $GIT_URL --branch "$GIT_TAG" --shallow-submodules && \
     cd libjxl && \
