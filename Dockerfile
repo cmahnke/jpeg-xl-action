@@ -23,7 +23,7 @@ RUN apk --update upgrade && \
     if [ -z "$GIT_TAG" ] ; then \
         GIT_TAG=DEFAULT_GIT_TAG ; \
     fi && \
-    git clone --depth 1 --recursive $GIT_URL --shallow-submodules && \
+    git clone --depth 1 --recursive $GIT_URL --branch "$GIT_TAG" --shallow-submodules && \
     cd libjxl && \
     mkdir build && cd build && \
     export CC=clang CXX=clang++ && \
