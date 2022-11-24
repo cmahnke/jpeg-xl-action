@@ -13,17 +13,18 @@ ENV BUILD_DEPS="cmake git g++ clang-dev make libc-dev libgcc binutils pkgconfig 
                 libwebp-dev brotli-dev openexr-dev linux-headers" \
     RUN_DEPS="busybox libstdc++ libpng libwebp giflib libavif libjpeg-turbo brotli-libs openexr libatomic" \
     BUILD_DIR=/tmp/build \
-    GIT_URL="https://github.com/libjxl/libjxl.git"
+    GIT_URL="https://github.com/libjxl/libjxl.git" \
+    DEFAULT_GIT_TAG="v0.7.0"
 
 RUN apk --update upgrade && \
     apk add --no-cache $RUN_DEPS $BUILD_DEPS && \
     mkdir -p $BUILD_DIR && \
     cd $BUILD_DIR && \
+    if [ -z "$GIT_TAG" ] ; then \
+        GIT_TAG=DEFAULT_GIT_TAG ; \
+    fi && \
     git clone --depth 1 --recursive $GIT_URL --shallow-submodules && \
     cd libjxl && \
-    if [ -n "GIT_TAG" ] ; then \
-        git checkout $GIT_TAG ; \
-    fi && \
     mkdir build && cd build && \
     export CC=clang CXX=clang++ && \
     cmake -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_BUILD_TYPE=Release -DJPEGXL_ENABLE_DOXYGEN:BOOL=OFF -DJPEGXL_ENABLE_BENCHMARK:BOOL=OFF -DJPEGXL_ENABLE_EXAMPLES:BOOL=OFF -DBUILD_TESTING=OFF -DCMAKE_INSTALL_PREFIX=/usr .. && \
