@@ -14,7 +14,7 @@ ENV BUILD_DEPS="cmake git g++ clang-dev make libc-dev libgcc binutils pkgconfig 
     RUN_DEPS="busybox libstdc++ libpng libwebp giflib libavif libjpeg-turbo brotli-libs openexr libatomic" \
     BUILD_DIR=/tmp/build \
     GIT_URL="https://github.com/libjxl/libjxl.git" \
-    DEFAULT_GIT_TAG="v0.8.0"
+    DEFAULT_GIT_TAG="v0.8.1"
 
 RUN apk --update upgrade && \
     apk add --no-cache $RUN_DEPS $BUILD_DEPS && \
