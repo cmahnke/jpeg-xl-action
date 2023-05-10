@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:experimental
 
-FROM alpine:3.17.3
+FROM alpine:3.18.0
 
 LABEL maintainer="cmahnke@gmail.com"
 LABEL "com.github.actions.name"="GitHub Actions JPEG XL conversion"
