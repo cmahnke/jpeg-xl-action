@@ -28,7 +28,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2.7.0
       - name: Push to GitHub Packages
-        uses: docker/build-push-action@v4.1.0
+        uses: docker/build-push-action@v4.1.1
         with:
           build-args: GIT_TAG=v0.7.0
           push: true
@@ -58,7 +58,7 @@ jobs:
 #      - name: Set up Docker Buildx
 #        uses: docker/setup-buildx-action@v2.7.0
 #      - name: Push to GitHub Packages
-#        uses: docker/build-push-action@v4.1.0
+#        uses: docker/build-push-action@v4.1.1
 #        with:
 #          build-args: GIT_TAG=v0.3.7
 #          push: true
