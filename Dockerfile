@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:experimental
 
-FROM alpine:3.18.0
+FROM alpine:3.18
 
 LABEL maintainer="cmahnke@gmail.com"
 LABEL "com.github.actions.name"="GitHub Actions JPEG XL conversion"
@@ -14,7 +14,7 @@ ENV BUILD_DEPS="cmake git g++ clang-dev make libc-dev libgcc binutils pkgconfig 
     RUN_DEPS="busybox libstdc++ libpng libwebp giflib libavif libjpeg-turbo brotli-libs openexr libatomic" \
     BUILD_DIR=/tmp/build \
     GIT_URL="https://github.com/libjxl/libjxl.git" \
-    DEFAULT_GIT_TAG="v0.8.1"
+    DEFAULT_GIT_TAG="v0.8.2"
 
 RUN apk --update upgrade && \
     apk add --no-cache $RUN_DEPS $BUILD_DEPS && \
