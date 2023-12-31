@@ -7,6 +7,9 @@ on:
   schedule:
     - cron: '0 23 * * 1'
 
+env:
+  LIBJXL_VERSION: v0.8.2
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -35,8 +38,9 @@ jobs:
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v5.1.0
         with:
-          build-args: GIT_TAG=v0.8.2
+          build-args: GIT_TAG=${{ env.LIBJXL_VERSION }}
           push: true
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           tags: |
             ghcr.io/cmahnke/jpeg-xl-action:latest
+            ghcr.io/cmahnke/jpeg-xl-action:${{ env.LIBJXL_VERSION }}
