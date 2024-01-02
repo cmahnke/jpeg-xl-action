@@ -30,10 +30,6 @@ RUN apk --update upgrade && \
     cmake -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_BUILD_TYPE=Release -DJPEGXL_ENABLE_DOXYGEN:BOOL=OFF -DJPEGXL_ENABLE_BENCHMARK:BOOL=OFF -DJPEGXL_ENABLE_EXAMPLES:BOOL=OFF -DBUILD_TESTING=OFF -DCMAKE_INSTALL_PREFIX=/usr .. && \
     cmake --build . -- -j$(nproc) && \
     cmake --install . && \
-## Fix some installation issues, see https://gitlab.com/wg1/jpeg-xl/-/issues/200
-#    ln -s /usr/lib64/pkgconfig/* /usr/lib/pkgconfig/ && \
-#    rm -rf /usr/include/contrib/image /usr/include/contrib/math /usr/include/hwy && \
-#    ln -s /usr/lib64/libjxl* /usr/lib/ && \
 # Cleanup
     cd / && \
     apk del $BUILD_DEPS libjpeg && \
