@@ -8,7 +8,7 @@ on:
     - cron: '0 23 * * 1'
 
 env:
-  LIBJXL_VERSION: v0.10.1
+  LIBJXL_VERSION: v0.10.2
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
