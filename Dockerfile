@@ -9,12 +9,11 @@ LABEL org.opencontainers.image.source https://github.com/cmahnke/jpeg-xl-action
 
 ARG GIT_TAG=""
 
-ENV BUILD_DEPS="cmake git g++ clang-dev make libc-dev libgcc binutils pkgconfig giflib-dev libavif-dev libjpeg-turbo-dev libpng-dev \
-                libwebp-dev brotli-dev openexr-dev linux-headers" \
+ENV BUILD_DEPS="cmake git g++ clang-dev make libc-dev libgcc binutils pkgconfig giflib-dev libavif-dev libjpeg-turbo-dev libpng-dev libwebp-dev brotli-dev openexr-dev linux-headers" \
     RUN_DEPS="busybox libstdc++ libpng libwebp giflib libavif libjpeg-turbo brotli-libs openexr libatomic" \
     BUILD_DIR=/tmp/build \
     GIT_URL="https://github.com/libjxl/libjxl.git" \
-    DEFAULT_GIT_TAG="v0.10.2"
+    DEFAULT_GIT_TAG="v0.10.3"
 
 RUN apk --update upgrade && \
     apk add --no-cache $RUN_DEPS $BUILD_DEPS && \
