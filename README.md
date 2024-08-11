@@ -1,4 +1,4 @@
-Experimental Docker image providing JPEX-XL tools
+Experimental Docker image providing JPEG-XL tools
 =================================================
 
 # Building
@@ -6,6 +6,11 @@ Experimental Docker image providing JPEX-XL tools
 ```
 docker buildx build -t ghcr.io/cmahnke/jpeg-xl-action:latest .
 ```
+
+```
+docker buildx build -t ghcr.io/cmahnke/jpeg-xl-action/imagemagick:latest -f docker/imagemagick/Dockerfile .
+```
+
 
 # Usage
 
