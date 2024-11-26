@@ -9,7 +9,7 @@ on:
   pull_request:
 
 env:
-  LIBJXL_VERSION: v0.11.0
+  LIBJXL_VERSION: v0.11.1
   IMAGEMAGICK_VERSION: '7.1.1-39'
 
 concurrency:
