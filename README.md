@@ -3,9 +3,13 @@ Experimental Docker image providing JPEG-XL tools
 
 # Building
 
+## LibJXL
+
 ```
 docker buildx build -t ghcr.io/cmahnke/jpeg-xl-action:latest .
 ```
+
+## ImageMagick
 
 ```
 docker buildx build -t ghcr.io/cmahnke/jpeg-xl-action/imagemagick:latest -f docker/imagemagick/Dockerfile .
