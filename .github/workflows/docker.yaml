@@ -42,7 +42,7 @@ jobs:
         with:
           build-args: GIT_TAG=${{ env.LIBJXL_VERSION }}
           push: true
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
           tags: |
             ghcr.io/cmahnke/jpeg-xl-action:latest
             ghcr.io/cmahnke/jpeg-xl-action:${{ env.LIBJXL_VERSION }}
@@ -74,7 +74,7 @@ jobs:
           build-args: IMAGEMAGICK_GIT_TAG=${{ env.IMAGEMAGICK_VERSION }}
           push: true
           file: docker/imagemagick/Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
           tags: |
             ghcr.io/cmahnke/jpeg-xl-action/imagemagick:latest
             ghcr.io/cmahnke/jpeg-xl-action/imagemagick:${{ env.IMAGEMAGICK_VERSION }}

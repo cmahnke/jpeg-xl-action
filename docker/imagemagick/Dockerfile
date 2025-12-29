@@ -6,7 +6,7 @@ LABEL maintainer="cmahnke@gmail.com"
 LABEL "com.github.actions.name"="ImageMAgick with JPEG XL conversion"
 LABEL org.opencontainers.image.source https://github.com/cmahnke/jpeg-xl-action
 
-ARG IMAGEMAGICK_GIT_TAG=7.1.2-8
+ARG IMAGEMAGICK_GIT_TAG=7.1.2-12
 
 ENV BUILD_DEPS="git wget cmake make automake autoconf libtool clang-dev g++ zlib-dev libjpeg-turbo-dev libpng-dev libavif-dev libwebp-dev openexr-dev libheif-dev libzip-dev libxml2-dev lcms2-dev freetype-dev fontconfig-dev tiff-dev patch gsl-dev" \
     RUN_DEPS="zlib jpeg libjpeg-turbo libpng openexr-libopenexr libavif libwebp libheif libzip libxml2 libwebpdecoder libwebpdemux libwebpmux openexr-libopenexrutil openexr-libopenexrcore brotli lcms2 freetype fontconfig ffmpeg libjxl-tools tiff libavif-apps exiv2 gsl" \
