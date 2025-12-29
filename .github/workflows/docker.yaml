@@ -10,7 +10,7 @@ on:
 
 env:
   LIBJXL_VERSION: v0.11.1
-  IMAGEMAGICK_VERSION: '7.1.2-7'
+  IMAGEMAGICK_VERSION: '7.1.2-12'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
