@@ -1,0 +1,83 @@
+name: Package Update Source
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+
+  build_libjsxl_debs:
+    name: Push graphics tools GitHub Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v7
+        with:
+          submodules: true
+          fetch-depth: 0
+      - name: Login to GitHub Packages Docker Registry
+        uses: docker/login-action@v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          logout: false
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4.3.0
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v7.3.0
+        with:
+          push: false
+          context: .
+          file: docker/libjxl/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            ghcr.io/cmahnke/jpegxl-xl-action/libjxl:latest
+
+  package-and-deploy:
+    name: Build, Sign, and Deploy APT Repository
+    needs: build_libjsxl_debs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Debian Packaging Tools and public key
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dpkg-dev apt-utils sq pandoc
+          echo "${{ secrets.GPG_PUBLIC_KEY }}" > public.key
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" > private.key
+
+      - name: Create Debian Directory Layout
+        run: |
+          mkdir repo-dist
+          docker cp "$(docker create --name temp_container ghcr.io/cmahnke/jpegxl-xl-action/libjxl:latest)":/debs/* ./repo-dist/ && docker rm temp_container
+
+          cd repo-dist
+          dpkg-scanpackages --multiversion . > Packages
+          gzip -k -f Packages
+
+          apt-ftparchive release . > Release
+
+          # sq soesn't have a stable interface, this will fail on ubuntu 26.04
+          sq sign --signer-file ../private.key --cleartext-signature Release > InRelease
+          sq sign --signer-file ../private.key --detached Release > Release.gpg
+
+          cp ../public.key public.gpg
+          rm -f ../private.key
+          mkdir -p public
+          mv repo-dist ./public/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          force_orphan: true
